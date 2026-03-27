@@ -1,5 +1,7 @@
 # Smart AI Apps Playground
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 An educational Python playground for learning to build AI applications using LangChain and OpenAI. Each exercise demonstrates a key concept in LLM application development, progressing from basic model usage to memory-enabled chatbots.
 
 ## Project Structure
@@ -109,3 +111,8 @@ Embeds document chunks with `OpenAIEmbeddings` (`text-embedding-3-small`) into a
 | `beautifulsoup4` | ≥4.12.0 | HTML parsing for `WebBaseLoader` |
 | `lxml` | ≥5.0.0 | XML/HTML parser backend |
 | `pypdf` | ≥3.0.0 | PDF parsing for `PyPDFLoader` |
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
