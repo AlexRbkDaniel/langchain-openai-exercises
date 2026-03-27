@@ -1,17 +1,46 @@
-### Exercise 4
-#### **Building a Simple Retrieval System with LangChain**
+# Exercise 4 — Semantic Retrieval System
 
-In this exercise, you'll implement a simple retrieval system using LangChain's vector store and retriever components to help answer questions based on a document.
+Build a retrieval pipeline that embeds document chunks into a Chroma vector store and retrieves the most relevant passages for natural language queries.
 
-**Instructions:**
+## What It Does
 
-1. Import the necessary components for document loading, embedding, and retrieval.
-2. Load the provided document about artificial intelligence.
-3. Split the document into manageable chunks.
-4. Use an embedding model to create vector representations.
-5. Create a vector store and a retriever.
-6. Implement a simple question-answering system.
-7. Test your system with at least 3 different questions.
+1. Loads the LangChain docs introduction page via `WebBaseLoader`
+2. Splits the content into 500-character chunks with `RecursiveCharacterTextSplitter`
+3. Embeds all chunks using OpenAI's `text-embedding-3-small` model
+4. Stores the embeddings in a local in-memory **Chroma** vector store
+5. Creates a retriever that returns the top-3 most similar chunks per query
+6. Tests the retriever with 3 sample queries and prints the results
 
-**Starter code: provide your solution in the TODO parts**
+## Key Concepts
 
+- **`OpenAIEmbeddings`** — converts text chunks into dense vector representations using `text-embedding-3-small`
+- **`Chroma`** — lightweight local vector database; `from_documents()` embeds and indexes chunks in one call
+- **`VectorStoreRetriever`** — wraps the vector store; `invoke(query)` performs a cosine similarity search and returns the top-k chunks
+- **`USER_AGENT`** — loaded from `.env` and set before LangChain imports to suppress `WebBaseLoader` warnings
+
+## Pipeline
+
+```
+WebBaseLoader → RecursiveCharacterTextSplitter → OpenAIEmbeddings → Chroma → Retriever → Query results
+```
+
+## Sample Queries
+
+```
+"What is LangChain?"
+"How do retrievers work?"
+"Why is document splitting important?"
+```
+
+## Run
+
+```bash
+python exercise4/retrieval-models.py
+```
+
+## Things to Try
+
+- Swap `WebBaseLoader` for `PyPDFLoader` to retrieve from a PDF instead
+- Increase `k` in `search_kwargs` to return more results per query
+- Persist the Chroma store to disk with `persist_directory` to avoid re-embedding on every run
+- Replace `text-embedding-3-small` with `text-embedding-3-large` for higher accuracy

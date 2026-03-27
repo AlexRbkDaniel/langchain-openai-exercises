@@ -1,19 +1,48 @@
-#%% md
-### Exercise 2 
-#### **Creating and Using a JSON Output Parser**
+# Exercise 2 — JSON Output Parsing
 
-Now let's implement a simple JSON output parser to structure the responses from your LLM.
+Extract structured, typed data from an LLM using a Pydantic schema and LangChain's `JsonOutputParser`.
 
-**Instructions:**  
+## What It Does
 
-You'll complete the following steps:
+- Defines a `MovieInfo` Pydantic model with 4 typed fields: `title`, `director`, `year`, `genre`
+- Builds a `prompt | llm | parser` chain that instructs GPT-4 to return **only** a valid JSON object
+- Invokes the chain with a movie name and accesses the parsed fields directly as a Python dict
 
-1. Import the necessary components to create a JSON output parser.
-2. Create a prompt template that requests information in JSON format (hint: use the provided template).
-3. Build a chain that connects your prompt, LLM, and JSON parser.
-4. Test your parser using at least three different inputs.
-5. Access and display specific fields from the parsed JSON output.
-6. Verify that your output is properly structured and accessible as a Python dictionary.
+## Key Concepts
 
-**Starter code: provide your solution in the TODO parts**
+- **`JsonOutputParser`** — parses the LLM's raw string output into a Python dict, validated against the Pydantic schema
+- **`PromptTemplate`** — injects `format_instructions` as a partial variable so the model always knows the expected output shape
+- **LCEL chain (`|`)** — connects `PromptTemplate → ChatOpenAI → JsonOutputParser` in a single pipeline
+- **Strict instructions** — the prompt explicitly forbids markdown, examples, and extra keys to ensure clean JSON output
 
+## Pydantic Schema
+
+```python
+class MovieInfo(BaseModel):
+    title: str      # Title of the movie
+    director: str   # Director of the movie
+    year: int       # Release year
+    genre: str      # Genre
+```
+
+## Run
+
+```bash
+python exercise2/json-prs-models.py
+```
+
+## Expected Output
+
+```
+Parsed result:
+Title: The Matrix
+Director: The Wachowskis
+Year: 1999
+Genre: Science Fiction
+```
+
+## Things to Try
+
+- Change `movie_name` to a different film and verify the parser handles it correctly
+- Add more fields to `MovieInfo` (e.g. `rating`, `cast`) and update the format instructions
+- Test with an obscure or fictional movie to see how the model handles uncertainty
