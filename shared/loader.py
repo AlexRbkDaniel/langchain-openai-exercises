@@ -40,3 +40,16 @@ class CustomPrompt:
     @property
     def behaviour(self) -> str:
         return self.__behaviour
+
+class CustomReview:
+    def __init__(self, review: str, type: str):
+        self.__review = review
+        self.__type = type
+
+    @property
+    def review(self) -> str:
+        return self.__review
+
+    @property
+    def type(self) -> str:
+        return self.__type
