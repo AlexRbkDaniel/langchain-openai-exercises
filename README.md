@@ -34,6 +34,9 @@ smart-ai-apps-playground/
     ├── README.md
     ├── 1-sequential-chain.py      # Legacy SequentialChain approach
     └── 2-lcel-pipeline.py         # Modern LCEL Runnable pipeline
+├── 07-react-agent-tools/
+    ├── README.md
+    └── react-agent.py             # ReAct agent with calculator + text formatter tools
 ```
 
 ## Exercises
@@ -59,6 +62,9 @@ Embeds document chunks with `OpenAIEmbeddings` (`text-embedding-3-small`) into a
 
 ### 06 — Sequential Chain vs LCEL Pipeline
 Implements the same three-step product review analysis pipeline (sentiment → summary → response) using two different approaches side by side: the legacy `SequentialChain` from `langchain-classic` and the modern LCEL `RunnablePassthrough` pipeline.
+
+### 07 — ReAct Agent with Custom Tools
+Builds a ReAct (Reason + Act) agent equipped with two custom `@tool`-decorated functions: a sandboxed arithmetic **calculator** and a **text formatter** (uppercase / lowercase / titlecase). The agent autonomously decides which tool to call, observes the result, and loops until it reaches a final answer.
 
 ## Shared Utilities
 
@@ -105,6 +111,7 @@ Implements the same three-step product review analysis pipeline (sentiment → s
    python 05-chatbot-memory/3-summary-memory.py
    python 06-sequential-chain-vs-lcel/1-sequential-chain.py
    python 06-sequential-chain-vs-lcel/2-lcel-pipeline.py
+   python 07-react-agent-tools/react-agent.py
    ```
 
 ## Tech Stack
