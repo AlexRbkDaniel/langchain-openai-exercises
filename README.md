@@ -8,24 +8,23 @@ An educational Python playground for learning to build AI applications using Lan
 
 ```
 smart-ai-apps-playground/
-├── main.py                        # Project entry point
 ├── requirements.txt               # Python dependencies
 ├── .env                           # Environment variables (not committed)
 ├── shared/
 │   └── loader.py                  # Singleton model loader + CustomPrompt class
-├── exercise1/
+├── 01-model-comparison/
 │   ├── README.md
 │   └── cmp-models.py              # GPT-3.5 vs GPT-4 comparison
-├── exercise2/
+├── 02-json-output-parsing/
 │   ├── README.md
 │   └── json-prs-models.py         # Structured JSON output with Pydantic
-├── exercise3/
+├── 03-document-loading-splitting/
 │   ├── README.md
 │   └── doc-load-models.py         # PDF & web document loading + text splitting
-├── exercise4/
+├── 04-semantic-retrieval/
 │   ├── README.md
 │   └── retrieval-models.py        # Vector store + semantic retrieval
-└── exercise5/
+└── 05-chatbot-memory/
     ├── README.md
     ├── 1-manual-history.py        # Manual chat history
     ├── 2-buffer-memory.py         # Buffer memory with RunnableWithMessageHistory
@@ -35,19 +34,19 @@ smart-ai-apps-playground/
 
 ## Exercises
 
-### Exercise 1 — Model Comparison
+### 01 — Model Comparison
 Compares GPT-3.5-turbo and GPT-4 responses across 3 prompt types (creative writing, factual questions, instruction-following). Uses a `CustomPrompt` class with private properties and a singleton model loader to avoid reloading models.
 
-### Exercise 2 — JSON Output Parsing
+### 02 — JSON Output Parsing
 Demonstrates structured output extraction using a Pydantic `MovieInfo` schema and LangChain's `JsonOutputParser`. Builds a `prompt | llm | parser` chain that forces the model to return valid, typed JSON.
 
-### Exercise 3 — Document Loading & Text Splitting
+### 03 — Document Loading & Text Splitting
 Loads content from a remote PDF and a web page using `PyPDFLoader` and `WebBaseLoader`. Splits documents with both `CharacterTextSplitter` and `RecursiveCharacterTextSplitter` and compares chunk statistics.
 
-### Exercise 4 — Semantic Retrieval System
+### 04 — Semantic Retrieval System
 Embeds document chunks with `OpenAIEmbeddings` (`text-embedding-3-small`) into a Chroma vector store, then retrieves the most relevant passages for natural language queries using a `VectorStoreRetriever`.
 
-### Exercise 5 — Chatbot with Memory (3 implementations)
+### 05 — Chatbot with Memory (3 implementations)
 | File | Strategy |
 |---|---|
 | `1-manual-history.py` | Manually manage `ChatMessageHistory` |
@@ -85,13 +84,13 @@ Embeds document chunks with `OpenAIEmbeddings` (`text-embedding-3-small`) into a
 
 4. Run any exercise:
    ```bash
-   python exercise1/cmp-models.py
-   python exercise2/json-prs-models.py
-   python exercise3/doc-load-models.py
-   python exercise4/retrieval-models.py
-   python exercise5/1-manual-history.py
-   python exercise5/2-buffer-memory.py
-   python exercise5/3-summary-memory.py
+   python 01-model-comparison/cmp-models.py
+   python 02-json-output-parsing/json-prs-models.py
+   python 03-document-loading-splitting/doc-load-models.py
+   python 04-semantic-retrieval/retrieval-models.py
+   python 05-chatbot-memory/1-manual-history.py
+   python 05-chatbot-memory/2-buffer-memory.py
+   python 05-chatbot-memory/3-summary-memory.py
    ```
 
 ## Tech Stack
